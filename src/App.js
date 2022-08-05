@@ -71,47 +71,59 @@ function App() {
     <Swiper 
     className='swiper-container'
     breakpoints={{
-      // when window width is >= 640px
+      // when window width is >= 320px
       320: {
         width: 320,
         slidesPerView: 1,
+        spaceBetween: 10,
       },
-      // when window width is >= 640px
+      // when window width is >= 480px
       480: {
         width: 480,
         slidesPerView: 1,
+        spaceBetween: 10,
       },
       // when window width is >= 640px
       640: {
         width: 640,
         slidesPerView: 2,
+        spaceBetween: 20,
       },
-      // when window width is >= 640px
+      // when window width is >= 768px
       768: {
         width: 768,
         slidesPerView: 3,
+        spaceBetween: 30,
       },
-      // when window width is >= 768px
+      // when window width is >= 1024px
       1024: {
         width: 1024,
         slidesPerView: 4,
+        spaceBetween: 40,
       },
     }}
       modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={20}
-      slidesPerView={4}
-      navigation
+      // spaceBetween={20}
+      // slidesPerView={4}
+      slidesPerGroup= {1}
+      navigation= {{
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }}
       // pagination={{ clickable: true }}
       loop={true}
-      scrollbar={{ dragSize: 100, draggable: false }}
+      loopFillGroupWithBlank = {true}
+      loopedSlidesLimit = {true}
+      scrollbar={{ dragSize: 100, draggable: false, el: ".swiper-scrollbar" }}
       // onSlideChange={() => console.log('slide change')}
       // onSwiper={(swiper) => console.log(swiper)}
     >
+      <div class="swiper-button-prev"></div>
       { data.map( user => (
         <SwiperSlide key={ user.id } className='slide'>
           <div className='slide-content'>
             <div className='user-image'>
-              <img src={ user.linkImg } className='user-photo'/>
+              <img src={ user.linkImg } className='user-photo' alt='test NFT'/>
             </div>
             <div className='info'>
               <h2>{ user.title }</h2>
@@ -121,6 +133,8 @@ function App() {
           </div>
         </SwiperSlide>
       )) }
+      <div class="swiper-button-next"></div>
+      <div class="swiper-scrollbar"></div>
     </Swiper>
   );
 }
